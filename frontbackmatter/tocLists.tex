@@ -8,6 +8,16 @@
 \cleardoublepage\pdfbookmark{\contentsname}{toc}\tableofcontents\label{refTOC}
 \cleardoublepage
 
+% Füge bei neuem Kapitelbeginn in "list of listings" einen vspace von 10pt ein.
+% Dadurch entsteht im Quellcodeverzeichnis (wie auch in den anderen Verzeichnisen, wo das automatisch erzeugt wird) ein vertikaler Abstand zwischen den Kapiteln.
+\makeatletter
+\let\orig@chapter\chapter
+\renewcommand{\chapter}{%
+    \addtocontents{lol}{\protect\addvspace{10\p@}}% 
+    \orig@chapter
+}
+\makeatother
+
 \renewcommand{\listtheoremname}{Definitionen, Theoreme und Beweise}
 \cleardoublepage\phantomsection
 \renewcommand\thmtformatoptarg[1]{: \enquote{#1}}
